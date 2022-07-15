@@ -1,0 +1,45 @@
+Coding Style:
+	Resources: AppleCarrot
+	vars: appleCarrot
+	functions: apple_Carrot
+
+
+
+player loop:
+	Load dungeon with randomness affects
+	zoom into start area with character and stairs
+	players:
+		attacks the monsters
+		collects upgrades
+		affects the rolls of the dice
+	player goes into next floor
+
+
+The monsters come in 2 forms:
+	beast
+		attacks with one or two large attacks, usually with a cool gimick
+		guards some treasure
+		usually alone
+	humanoid
+		comes in packs
+		uses weapons the player could possibly have
+		acts like player, kinda
+
+The path will be layed out, then rooms will be selected dramatically and randomlly
+	fountan room
+	treasure room
+	path room
+		water
+		hallway
+	shop
+rooms will then be filled randomly and dramatically
+the player should be prompted to use any re-roll tokens
+
+resources:
+	re-roll tokens
+	health
+	keys
+	coins
+
+		
+		

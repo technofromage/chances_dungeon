@@ -1,0 +1,64 @@
+[gd_scene format=2]
+
+[node name="Player_GUI" type="CanvasLayer"]
+follow_viewport_enable = true
+
+[node name="Container" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.54004
+margin_top = -0.513336
+margin_right = 1.54004
+margin_bottom = -0.513306
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Healthbar" type="Control" parent="Container"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 136.0
+margin_bottom = 41.0
+
+[node name="HealthLbl" type="Label" parent="Container/Healthbar"]
+margin_right = 60.0
+margin_bottom = 14.0
+text = "Health"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthCur" type="Label" parent="Container/Healthbar"]
+margin_left = 60.0
+margin_right = 80.0
+margin_bottom = 14.0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthMax" type="Label" parent="Container/Healthbar"]
+margin_left = 80.0
+margin_right = 100.0
+margin_bottom = 14.0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="Control" parent="Container"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Weapons" type="ItemList" parent="Container/Inventory"]
+anchor_left = 0.898
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 849.08
+margin_right = 883.632
+__meta__ = {
+"_edit_use_anchors_": false
+}

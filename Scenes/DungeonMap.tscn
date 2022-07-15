@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Objects/Scripts/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://Objects/GUI/OptionsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/Scripts/DungeonMaster.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/SpinnerTextList.gd" type="Script" id=5]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Buttons" type="VBoxContainer" parent="PauseMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseMenu/Buttons"]
+margin_right = 83.0
+margin_bottom = 14.0
+text = "PAUSED"
+
+[node name="Continue" type="Button" parent="PauseMenu/Buttons"]
+margin_top = 18.0
+margin_right = 83.0
+margin_bottom = 38.0
+text = "Continue"
+
+[node name="Options" type="Button" parent="PauseMenu/Buttons"]
+margin_top = 42.0
+margin_right = 83.0
+margin_bottom = 62.0
+text = "Options"
+
+[node name="Main" type="Button" parent="PauseMenu/Buttons"]
+margin_top = 66.0
+margin_right = 83.0
+margin_bottom = 86.0
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="PauseMenu/Buttons"]
+margin_top = 90.0
+margin_right = 83.0
+margin_bottom = 110.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsMenu" parent="PauseMenu" instance=ExtResource( 3 )]
+
+[node name="DungeonMaster" type="Node2D" parent="."]
+position = Vector2( 142.498, 111.037 )
+script = ExtResource( 4 )
+
+[node name="Spinner" type="CanvasLayer" parent="."]
+
+[node name="DungeonText" type="ItemList" parent="Spinner"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -150.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="PauseMenu/Buttons/Continue" to="PauseMenu" method="_on_Continue_pressed"]
+[connection signal="pressed" from="PauseMenu/Buttons/Options" to="PauseMenu" method="_on_Options_pressed"]
+[connection signal="pressed" from="PauseMenu/Buttons/Main" to="PauseMenu" method="_on_Main_pressed"]
+[connection signal="pressed" from="PauseMenu/Buttons/Quit" to="PauseMenu" method="_on_Quit_pressed"]
