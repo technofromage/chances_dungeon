@@ -3,13 +3,13 @@ extends Node2D
 func clip(neighborsList):
 	for neighbor in neighborsList:
 		match(neighbor):
-			Glob.TOP:
+			Glob.dirs.TOP:
 				clear_top()
-			Glob.BOT:
+			Glob.dirs.BOT:
 				clear_bot()
-			Glob.LEFT:
+			Glob.dirs.LEFT:
 				clear_left()
-			Glob.RIGHT:
+			Glob.dirs.RIGHT:
 				clear_right()
 
 func clear_top():
@@ -23,4 +23,4 @@ func clear_left():
 		$TileMap.set_cell(-6,i,-1)
 func clear_right():
 	for i in range(-5,4):
-		$TileMap.set_cell(i,5,-1)
+		$TileMap.set_cell(5,i,-1)

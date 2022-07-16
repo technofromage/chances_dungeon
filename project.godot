@@ -35,6 +35,7 @@ config/icon="res://Sprites/icon.png"
 Glob="*res://Globals/Globals.gd"
 OptionsMan="*res://Globals/OptionsManager.gd"
 RNGMan="*res://Globals/RNGManager.gd"
+RoomsData="*res://Globals/DungeonManager.gd"
 
 [input]
 

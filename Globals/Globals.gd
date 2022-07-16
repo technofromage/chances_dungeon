@@ -1,6 +1,6 @@
 extends Node
 
-enum neighbors {
+enum dirs {
 	TOP
 	BOT
 	LEFT

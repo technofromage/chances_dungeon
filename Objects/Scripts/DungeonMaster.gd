@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var path = []
 var offshoots = []
@@ -8,6 +8,7 @@ var roomCount = 1
 var counter = 0#decremented to represent wait times to let info sink in
 #TODO: consider "fast mode" option
 var processStage = 0#increment this tool when the stage is done
+var spinnersList = []#any active spinners
 
 enum stages{
 	PATH,
@@ -16,10 +17,11 @@ enum stages{
 	LOOT,
 	WAIT,
 	START,
+	PLAY,
 	RESET
 	}
 	
-func _process(delta):
+func _process(_delta):
 	match(processStage):
 		stages.PATH:
 			make_path()
@@ -35,13 +37,22 @@ func _process(delta):
 			start_game()
 		stages.RESET:
 			reset_dungeon()
-	update()
 
 func reset_dungeon():
 	counter = 0
 	path = []
 	processStage = 0
 	difficulty+=1
+	spinnersList.clear()
+	$DungeonText.clear_Text()
+	$DungeonText.visible=true
+	get_node("../ZoomedoutCam").current=true
+	for child in get_node("../RoomContainer").get_children():
+		child.queue_free()
+	for child in get_node("../MobContainer").get_children():
+		child.queue_free()
+	for child in get_node("../LootContainer").get_children():
+		child.queue_free()
 
 func make_path():
 	var length = (randi()%4+difficulty)
@@ -52,7 +63,7 @@ func make_path():
 		var direction = Vector2(0,0)
 		path.append(Vector2(0,0))
 		roomCount = 0
-		for i in range(length):
+		for _i in range(length):
 			pathValid = false
 			var attempts = 0
 			while (not pathValid):
@@ -75,28 +86,84 @@ func make_path():
 					roomCount += 1
 					pathValid = true
 		destination = currentPos #desination is the last viewed position
-		counter = 20
+		counter = 100
 	counter -= 1
 	if counter == 0:
 		processStage+=1
 		return true
 	else:
 		return false
-		
 
+var spinnerTracker = 0
 func place_rooms():
-	pass
+	if counter == 0:
+		for point in path:
+			var spinner = $DungeonText.create_Text()
+			spinnersList.append(spinner)
+			spinnerTracker += 1
+		counter = 1
+	else:#there WILL be at least 1 path, so at least one room
+		for i in len(spinnersList):
+			if spinnersList[i].timer==0:
+				spinnersList[i].timer=-1#done so that the call won't trigger twice
+				print(spinnersList[i].text)
+				summon_room(spinnersList[i].text, path[i])
+				spinnerTracker -= 1
+		if spinnerTracker == 0:#ie: once all spinners have stoped
+			processStage+=1
+			counter = 0
+				
 func place_monsters():
-	pass
+	processStage+=1
+
 func place_loot():
-	pass
+	processStage+=1
+
+var readyToGo = false
 func wait_for_player():
-	pass
+	if counter==0:
+		counter = 1
+		readyToGo=false
+		$StartButton.visible=true
+	if readyToGo:#this will get changed when the button is pressed
+		processStage+=1
+		counter = 0
+
 func start_game():
-	pass
+	#summon player
+	var player = Glob.summonObject("Player", get_node("../MobContainer"))
+	player.position = Vector2(0,0)
+	player.get_node("Camera2D").current=true
+	get_node("../ZoomedoutCam").current=false
+	$DungeonText.visible=false
+	processStage+=1
+	
 
 
+func summon_room(name, pathPoint):#this function will put a room with the name "name" onto the place for pathpoint
+	var neighborsArray = get_neighbors_on_path(pathPoint)
+	var clone:Node2D = RoomsData.roomAssets[name].instance().duplicate()
+	get_node("../RoomContainer").add_child(clone)
+	clone.position = pathPoint*5*64
+	clone.clip(neighborsArray)
+
+func get_neighbors_on_path(pathPoint):
+	var newArray = []
+	if path.has(pathPoint+Vector2(0,-1)):
+		newArray.append(Glob.dirs.TOP)
+	if path.has(pathPoint+Vector2(0,1)):
+		newArray.append(Glob.dirs.BOT)
+	if path.has(pathPoint+Vector2(1,0)):
+		newArray.append(Glob.dirs.RIGHT)
+	if path.has(pathPoint+Vector2(-1,0)):
+		newArray.append(Glob.dirs.LEFT)
+	return newArray
 
 
 func _on_Button_pressed():
 	reset_dungeon()
+
+
+func _on_StartButton_pressed():
+	readyToGo=true#this will intiate the end of the wait_for_player function
+	$StartButton.visible=false

@@ -1,7 +1,7 @@
-extends Node2D
+extends KinematicBody2D
 
 var velocity = Vector2(0,0)
-var speed = 100
+var speed = 15
 
 func _unhandled_key_input(event):
 	var input = Vector2(0,0)
@@ -13,8 +13,8 @@ func _unhandled_key_input(event):
 		input+=Vector2(-1,0)
 	if Input.is_action_pressed("game_right"):
 		input+=Vector2(1,0)
-	print(input)
+#	print(input)
 	velocity = input.normalized()
 		
 func _physics_process(delta):
-	translate(velocity*delta*speed)
+	move_and_slide(velocity*speed)

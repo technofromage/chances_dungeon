@@ -8,8 +8,9 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="ZoomedoutCam" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 3, 3 )
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -67,23 +68,21 @@ __meta__ = {
 
 [node name="OptionsMenu" parent="PauseMenu" instance=ExtResource( 3 )]
 
-[node name="DungeonMaster" type="Node2D" parent="."]
+[node name="DungeonMasterGUI" type="CanvasLayer" parent="."]
 script = ExtResource( 4 )
 
-[node name="Spinner" type="CanvasLayer" parent="."]
-
-[node name="DungeonText" type="ItemList" parent="Spinner"]
+[node name="DungeonText" type="Panel" parent="DungeonMasterGUI"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -150.0
+margin_left = -156.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-DMPath = NodePath("../../DungeonMaster")
+DMPath = NodePath("..")
 
-[node name="Button" type="Button" parent="Spinner/DungeonText"]
+[node name="Button" type="Button" parent="DungeonMasterGUI/DungeonText"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -96,7 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainText" type="Label" parent="Spinner/DungeonText"]
+[node name="MainText" type="Label" parent="DungeonMasterGUI/DungeonText"]
 anchor_right = 1.0
 margin_bottom = 14.0
 align = 1
@@ -104,12 +103,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Spinner/DungeonText"]
+[node name="RoomsText" type="VBoxContainer" parent="DungeonMasterGUI/DungeonText"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="DungeonMasterGUI"]
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+margin_left = -6.0
+margin_top = -20.0
+margin_right = 6.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomContainer" type="Node" parent="."]
+
+[node name="MobContainer" type="Node" parent="."]
+
+[node name="LootContainer" type="Node" parent="."]
 [connection signal="pressed" from="PauseMenu/Buttons/Continue" to="PauseMenu" method="_on_Continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Buttons/Options" to="PauseMenu" method="_on_Options_pressed"]
 [connection signal="pressed" from="PauseMenu/Buttons/Main" to="PauseMenu" method="_on_Main_pressed"]
 [connection signal="pressed" from="PauseMenu/Buttons/Quit" to="PauseMenu" method="_on_Quit_pressed"]
-[connection signal="pressed" from="Spinner/DungeonText/Button" to="DungeonMaster" method="_on_Button_pressed"]
+[connection signal="pressed" from="DungeonMasterGUI/DungeonText/Button" to="DungeonMasterGUI" method="_on_Button_pressed"]
+[connection signal="pressed" from="DungeonMasterGUI/StartButton" to="DungeonMasterGUI" method="_on_StartButton_pressed"]

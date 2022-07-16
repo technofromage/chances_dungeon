@@ -4,7 +4,7 @@ var rng = RandomNumberGenerator.new()
 var spinningText = []
 
 
-func _process(delta):
+func _process(_delta):
 	for textSpinner in spinningText:
 		textSpinner.change()
 		textSpinner.timer -= 1
