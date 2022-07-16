@@ -1,13 +1,16 @@
 extends Node
 
+enum neighbors {
+	TOP
+	BOT
+	LEFT
+	RIGHT
+}
 
 var debugFont = Control.new().get_font("font")#font used for debug 
+var objects = preload("res://Globals/SpawnableObjects.tscn").instance()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func summonObject(name, parent):#create a clone of an object from the other Scene
+	var clone = objects.get_node(name).duplicate()
+	parent.add_child(clone)
+	return clone

@@ -5,3 +5,8 @@ class_name SpinningLabel
 export (Array, String) var textOptions;
 export (int) var currentOption
 var timer = 0
+
+
+func change():
+	var index = randi()%len(textOptions)
+	text = textOptions[index]
