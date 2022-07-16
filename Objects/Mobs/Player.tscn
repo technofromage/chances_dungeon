@@ -1,9 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/JohnPabloc_Chess/w_pawn_png_128px.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Base/BaseWeapon.tres" type="Resource" id=3]
+[ext_resource path="res://Sprites/Sliante_weapons/Slainte_weapons7.png" type="Texture" id=3]
 [ext_resource path="res://Objects/GUI/Player_Gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Scripts/Weapon.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+affectType = "slash"
+affectColor = Color( 1, 0.494118, 0, 1 )
+sprite = ExtResource( 3 )
+damage = 10
+rangeLimit = 100
+cooldown = 2
+attackSpeed = 10
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.762
@@ -12,7 +23,7 @@ radius = 22.762
 collision_layer = 2
 collision_mask = 17
 script = ExtResource( 1 )
-equipedWep = ExtResource( 3 )
+equipedWep = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0, 0.0862745, 0.784314, 1 )

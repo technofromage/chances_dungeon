@@ -21,5 +21,4 @@ func _unhandled_input(event):
 		equipedWep.attack(self, attackDir)
 
 func process_death():
-	print("AAA")
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")

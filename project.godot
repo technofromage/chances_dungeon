@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "CustomOptions",
 "language": "GDScript",
-"path": "res://Resources/CustomOptions.gd"
+"path": "res://Resources/Scripts/CustomOptions.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Mob",
 "language": "GDScript",
-"path": "res://Resources/Base/BaseMob.gd"
+"path": "res://Resources/Scripts/BaseMob.gd"
 }, {
 "base": "Label",
 "class": "SpinningLabel",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://Resources/Base/Weapon.gd"
+"path": "res://Resources/Scripts/Weapon.gd"
 } ]
 _global_script_class_icons={
 "CustomOptions": "",
