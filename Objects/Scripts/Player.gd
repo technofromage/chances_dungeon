@@ -1,9 +1,7 @@
-extends KinematicBody2D
+extends Mob
 
-var velocity = Vector2(0,0)
-var speed = 15
 
-func _unhandled_key_input(event):
+func _unhandled_input(event):
 	var input = Vector2(0,0)
 	if Input.is_action_pressed("game_up"):
 		input+=Vector2(0,-1)
@@ -15,6 +13,10 @@ func _unhandled_key_input(event):
 		input+=Vector2(1,0)
 #	print(input)
 	velocity = input.normalized()
-		
-func _physics_process(delta):
-	move_and_slide(velocity*speed)
+	if Input.is_action_pressed("game_attack") or ( event is InputEventMouseButton):
+		print("AAA")
+		var attackDir = get_global_mouse_position()
+		attackDir = position.direction_to(attackDir-position)
+		print(attackDir)
+		print(attackDir-position)
+		equipedWep.attack(self, attackDir)

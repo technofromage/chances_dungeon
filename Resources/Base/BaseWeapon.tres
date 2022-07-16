@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Base/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Sliante_weapons/Slainte_weapons7.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+affectType = "slash"
+affectColor = Color( 1, 0.494118, 0, 1 )
+sprite = ExtResource( 2 )
+damage = 10
+rangeLimit = 100
+cooldown = 100
+attackSpeed = 10
