@@ -14,9 +14,8 @@ func _unhandled_input(event):
 #	print(input)
 	velocity = input.normalized()
 	if Input.is_action_pressed("game_attack") or ( event is InputEventMouseButton):
-		print("AAA")
 		var attackDir = get_global_mouse_position()
-		attackDir = position.direction_to(attackDir-position)
-		print(attackDir)
-		print(attackDir-position)
+		attackDir = position.direction_to(attackDir)
+#		print("Player>",attackDir)
+#		print("Player>",attackDir-position)
 		equipedWep.attack(self, attackDir)

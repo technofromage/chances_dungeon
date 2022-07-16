@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Objects/Scripts/SpinningLabel.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Mobs/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/dice.png" type="Texture" id=3]
 [ext_resource path="res://Globals/Dice.gd" type="Script" id=4]
 [ext_resource path="res://Objects/Mobs/Monster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/Scripts/LineEffect.gd" type="Script" id=6]
 
 [node name="SpawnableObjects" type="Node"]
 
@@ -19,8 +20,10 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="DroppedWeapon" type="Sprite" parent="."]
+visible = false
 
 [node name="Dice" type="Sprite" parent="."]
+visible = false
 z_index = 1
 texture = ExtResource( 3 )
 region_enabled = true
@@ -28,4 +31,8 @@ region_rect = Rect2( 0, 0, 16, 16 )
 script = ExtResource( 4 )
 
 [node name="Monster" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 0.735107, 0 )
+
+[node name="LineEffect" type="Node2D" parent="."]
+script = ExtResource( 6 )

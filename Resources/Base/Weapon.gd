@@ -20,9 +20,18 @@ func attack(source:Node2D, direction:Vector2):
 	#This function is a generic call, and can be overwritten
 	#This version just does a basic jab
 	var startpos = source.position
-	print("attacking!")
-	var HB = source.get_node("WeaponHitbox/CollisionShape2D")
-	HB.shape.b=direction*rangeLimit
+#	print("attacking!")
+	var HB:Area2D = source.get_node("WeaponHitbox")
+	HB.get_child(0).shape.b=direction*rangeLimit
+	var hitThings = HB.get_overlapping_bodies()
+	for object in hitThings:
+		print("hit!")
+		object.health-=1
+		object.set_knockback(direction,500)
 	if cooldownTimer <= 0:
 		isAttacking=true
 		upswing = true
+	var affect = Glob.summonObject("LineEffect",source)
+	affect.position=Vector2.ZERO#source.position
+	affect.endPoint = direction*rangeLimit
+	affect.color=Color.blue

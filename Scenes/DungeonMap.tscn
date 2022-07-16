@@ -75,7 +75,5 @@ __meta__ = {
 [node name="MobContainer" type="Node" parent="."]
 
 [node name="LootContainer" type="Node" parent="."]
-
-[node name="EffectContainer" type="Node" parent="."]
 [connection signal="pressed" from="DungeonMasterGUI/DungeonText/Button" to="DungeonMasterGUI" method="_on_Button_pressed"]
 [connection signal="pressed" from="DungeonMasterGUI/StartButton" to="DungeonMasterGUI" method="_on_StartButton_pressed"]
