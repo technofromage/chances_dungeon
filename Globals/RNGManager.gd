@@ -1,6 +1,7 @@
 extends Node
 
-var rng = RandomNumberGenerator.new()
+var LevelRNG = RandomNumberGenerator.new()
+var ActingRNG =  RandomNumberGenerator.new()#these are seperated so that level seeds can exist
 var spinningText = []
 
 

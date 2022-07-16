@@ -6,6 +6,11 @@ enum dirs {
 	LEFT
 	RIGHT
 }
+enum mobType {
+	PLAYER
+	MONSTER
+	BEAST
+}
 
 var debugFont = Control.new().get_font("font")#font used for debug 
 var objects = preload("res://Globals/SpawnableObjects.tscn").instance()
