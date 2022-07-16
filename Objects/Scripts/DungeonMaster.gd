@@ -112,9 +112,20 @@ func place_rooms():
 		if spinnerTracker == 0:#ie: once all spinners have stoped
 			processStage+=1
 			counter = 0
-				
+
+var DiceList = []
 func place_monsters():
-	processStage+=1
+	if counter==0:
+		DiceList = []
+		for i in range(1,len(path)):
+			DiceList.append(RNGMan.add_Dice(path[i]*5*64, Color.white,true,4))
+			counter += 1
+	for i in range(len(DiceList)):
+		if DiceList[i].value!=-1:
+			counter -=1
+			summon_monster(DiceList[i].value, path[i+1])
+	if counter<=0:
+		processStage+=1
 
 func place_loot():
 	processStage+=1
@@ -146,6 +157,11 @@ func summon_room(name, pathPoint):#this function will put a room with the name "
 	get_node("../RoomContainer").add_child(clone)
 	clone.position = pathPoint*5*64
 	clone.clip(neighborsArray)
+
+func summon_monster(value, pathPoint):
+	#TODO: implement different monsters
+	var clone = Glob.summonObject("Monster",get_node("../MobContainer"))
+	clone.position = (pathPoint*5*64)+Vector2(RNGMan.LevelRNG.randi()%31-15,RNGMan.LevelRNG.randi()%31-15)
 
 func get_neighbors_on_path(pathPoint):
 	var newArray = []

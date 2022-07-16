@@ -6,14 +6,14 @@ var spinningText = []
 
 const roomTypes = ["Room Basic", "Room Square"]
 
-const mainTextFormat = "Count:%s \nLvl:%s"
+const mainTextFormat = "Stage:%s \nCount:%s \nLvl:%s"
 
 func _ready():
 	DM = get_node(DMPath)
 
 func _process(_delta):
 	update()
-	var debugString = mainTextFormat % [String(DM.counter),String(DM.difficulty)]
+	var debugString = mainTextFormat % [String(DM.processStage),String(DM.counter),String(DM.difficulty)]
 	$MainText.text = debugString
 
 func clear_Text():

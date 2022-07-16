@@ -24,7 +24,7 @@ func process(source:Node2D):
 			Glob.mobType.MONSTER:
 				targetVelocity += directionToObject*distanceToObject*(-1)#move away from friend
 			Glob.mobType.PLAYER:
-				targetVelocity += directionToObject*(distanceToObject-90)#move towards enimy, but stay safe distance
+				targetVelocity += directionToObject*(distanceToObject-60)#move towards enimy, but stay safe distance
 	source.velocity = (targetVelocity.normalized()*0.2)+(prevDirection*0.8)
 	prevDirection = source.velocity
 	
