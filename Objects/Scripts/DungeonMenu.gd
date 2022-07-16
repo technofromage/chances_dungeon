@@ -25,6 +25,7 @@ func create_Text():
 	var newLabel:SpinningLabel = Glob.summonObject("SpinningLabel", $RoomsText)
 	newLabel.textOptions = roomTypes
 	newLabel.timer = randi()%70+50
+	newLabel.isLevel = true
 	RNGMan.spinText(newLabel)
 	return newLabel
 

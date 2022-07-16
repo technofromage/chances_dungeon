@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Objects/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/JohnPabloc_Chess/w_pawn_png_128px.png" type="Texture" id=2]
@@ -7,8 +7,6 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.762
-
-[sub_resource type="SegmentShape2D" id=2]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -21,19 +19,17 @@ modulate = Color( 0, 0.0862745, 0.784314, 1 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
+[node name="WeaponSprite" type="Sprite" parent="."]
+position = Vector2( -10, 0 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="WeaponHitbox" type="Area2D" parent="."]
-monitorable = false
-collision_layer = 8
+[node name="WeaponHitScan" type="RayCast2D" parent="."]
 collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHitbox"]
-shape = SubResource( 2 )
 
 [node name="Player_GUI" parent="." instance=ExtResource( 4 )]
 follow_viewport_enable = false

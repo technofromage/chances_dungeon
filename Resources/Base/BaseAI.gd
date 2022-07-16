@@ -17,14 +17,19 @@ func process(source:Node2D):
 	var targetVelocity = wonderDirection
 	var collisions = scanBox.get_overlapping_bodies()
 	for thing in collisions:#if see player, wall, or other monster
+		if thing==source:
+			continue
 		#var parent = thing.get_parent()
 		var directionToObject = source.position.direction_to(thing.position)
 		var distanceToObject = source.position.distance_to(thing.position)
 		match(thing.type):
 			Glob.mobType.MONSTER:
-				targetVelocity += directionToObject*distanceToObject*(-1)#move away from friend
+				targetVelocity += (directionToObject/distanceToObject)*(-100)#move away from friend
 			Glob.mobType.PLAYER:
 				targetVelocity += directionToObject*(distanceToObject-60)#move towards enimy, but stay safe distance
+				if distanceToObject<60:
+					if source.equipedWep:
+						source.equipedWep.attack(source, directionToObject)
 	source.velocity = (targetVelocity.normalized()*0.2)+(prevDirection*0.8)
 	prevDirection = source.velocity
 	

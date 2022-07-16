@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Objects/Scripts/Monster.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/JohnPabloc_Chess/w_pawn_png_128px.png" type="Texture" id=2]
@@ -8,10 +8,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.762
 
-[sub_resource type="SegmentShape2D" id=2]
-
 [sub_resource type="CircleShape2D" id=3]
-radius = 110.0
+radius = 120.0
 
 [node name="Monster" type="KinematicBody2D"]
 collision_layer = 4
@@ -27,16 +25,13 @@ modulate = Color( 1, 0.501961, 0.286275, 1 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
+[node name="WeaponSprite" type="Sprite" parent="."]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="WeaponHitbox" type="Area2D" parent="."]
-monitorable = false
-collision_layer = 16
+[node name="WeaponHitScan" type="RayCast2D" parent="."]
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHitbox"]
-shape = SubResource( 2 )
 
 [node name="AIHitbox" type="Area2D" parent="."]
 monitorable = false

@@ -19,3 +19,10 @@ func summonObject(name, parent):#create a clone of an object from the other Scen
 	var clone = objects.get_node(name).duplicate()
 	parent.add_child(clone)
 	return clone
+
+func change_scene(target:String):
+	print("changing scene:", target)
+	var sceneError = get_tree().change_scene(target)
+	if sceneError != OK:
+		print("Error on scene change to",target,", error#:",sceneError)
+		return

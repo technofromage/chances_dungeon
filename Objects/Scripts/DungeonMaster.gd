@@ -20,6 +20,8 @@ enum stages{
 	PLAY,
 	RESET
 	}
+
+var diceDictionary = {}
 	
 func _process(_delta):
 	match(processStage):
@@ -55,7 +57,7 @@ func reset_dungeon():
 		child.queue_free()
 
 func make_path():
-	var length = (randi()%4+difficulty)
+	var length = (RNGMan.LevelRNG.randi()%4+difficulty)
 	#sets the path node to contain length nodes starting from 0,0
 	if counter == 0:
 		var currentPos = Vector2(0,0)
@@ -70,7 +72,7 @@ func make_path():
 				attempts+=1
 				if attempts > 10:#easy check for when path cuts itself off
 					return
-				var choice = (randi()%4)
+				var choice = (RNGMan.LevelRNG.randi()%4)
 				match(choice):
 					0:
 						direction = Vector2(1,0)#right
@@ -94,40 +96,43 @@ func make_path():
 	else:
 		return false
 
-var spinnerTracker = 0
 func place_rooms():
 	if counter == 0:
+		diceDictionary.clear()
 		for point in path:
 			var spinner = $DungeonText.create_Text()
-			spinnersList.append(spinner)
-			spinnerTracker += 1
+			diceDictionary[spinner] = point
 		counter = 1
 	else:#there WILL be at least 1 path, so at least one room
-		for i in len(spinnersList):
-			if spinnersList[i].timer==0:
-				spinnersList[i].timer=-1#done so that the call won't trigger twice
-				print(spinnersList[i].text)
-				summon_room(spinnersList[i].text, path[i])
-				spinnerTracker -= 1
-		if spinnerTracker == 0:#ie: once all spinners have stoped
+		for spinner in diceDictionary.keys():
+			if spinner.timer==0:
+				print(spinner.text)
+				summon_room(spinner.text, diceDictionary[spinner])
+				diceDictionary.erase(spinner)#done so that the call won't trigger twice
+		if diceDictionary.empty():#ie: once all spinners have stoped
 			processStage+=1
 			counter = 0
 
-var DiceList = []
+
 func place_monsters():
 	if counter==0:
-		DiceList = []
+		diceDictionary.clear()
 		for i in range(1,len(path)):
-			DiceList.append(RNGMan.add_Dice(path[i]*5*64, Color.white,true,4))
+			var newDice = RNGMan.add_Dice(path[i]*5*64, Color.white,true,4)
+			diceDictionary[newDice] = path[i]
 			counter += 1
-	for i in range(len(DiceList)):
-		if DiceList[i].value!=-1:
-			counter -=1
-			summon_monster(DiceList[i].value, path[i+1])
+	for dice in diceDictionary.keys():
+		if dice.value!=-1:
+			summon_monster(dice.value, diceDictionary[dice])
+			diceDictionary.erase(dice)#done so that the call won't trigger twice
+			counter-=1
 	if counter<=0:
 		processStage+=1
 
 func place_loot():
+	var stairs = Glob.summonObject("StairCase_Down",get_node("../LootContainer"))
+	stairs.position = destination*5*64
+	stairs.randomise()
 	processStage+=1
 
 var readyToGo = false

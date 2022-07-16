@@ -10,5 +10,5 @@ affectColor = Color( 1, 0.494118, 0, 1 )
 sprite = ExtResource( 2 )
 damage = 10
 rangeLimit = 100
-cooldown = 100
+cooldown = 2
 attackSpeed = 10

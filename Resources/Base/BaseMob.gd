@@ -14,11 +14,21 @@ var health = maxHealth
 var velocity = Vector2(0,0)
 var knockbackVal = 0.0
 var knockbackDirection = Vector2(0,0)
-export var poise = 40
+export var poise = 40 #how quickly knockback is reduced
+export var coins = 1 #how many coins do you drop on death
+
+
+func _ready():
+	if equipedWep:
+		$WeaponSprite.texture=equipedWep.sprite
 
 func _physics_process(delta):
 	if health == 0:
 		queue_free()
+	
+	if equipedWep:
+		equipedWep.processTimers(delta)
+	
 	if knockbackVal>10:#loose controll
 		move_and_slide(knockbackDirection*knockbackVal)
 		knockbackVal-=poise
