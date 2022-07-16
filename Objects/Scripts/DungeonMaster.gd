@@ -88,7 +88,7 @@ func make_path():
 					roomCount += 1
 					pathValid = true
 		destination = currentPos #desination is the last viewed position
-		counter = 100
+		counter = 25
 	counter -= 1
 	if counter == 0:
 		processStage+=1

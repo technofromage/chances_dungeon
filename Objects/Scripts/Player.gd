@@ -19,3 +19,7 @@ func _unhandled_input(event):
 #		print("Player>",attackDir)
 #		print("Player>",attackDir-position)
 		equipedWep.attack(self, attackDir)
+
+func process_death():
+	print("AAA")
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")

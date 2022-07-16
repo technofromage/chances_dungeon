@@ -18,7 +18,7 @@ var upswing = false
 func processTimers(delta):
 	if cooldownTimer>0:
 		cooldownTimer-=delta
-		print(cooldownTimer)
+#		print(cooldownTimer)
 
 
 func attack(source:Node2D, direction:Vector2)->bool:

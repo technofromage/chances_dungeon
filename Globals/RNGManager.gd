@@ -4,6 +4,10 @@ var LevelRNG = RandomNumberGenerator.new()
 var ActingRNG =  RandomNumberGenerator.new()#these are seperated so that level seeds can exist
 var spinningText = []
 
+func _ready():
+	LevelRNG.randomize()
+	ActingRNG.randomize()
+
 func _process(_delta):
 	for textSpinner in spinningText:
 		textSpinner.change()

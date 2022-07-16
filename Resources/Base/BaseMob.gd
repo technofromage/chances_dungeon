@@ -24,7 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	if health == 0:
-		queue_free()
+		process_death()
 	
 	if equipedWep:
 		equipedWep.processTimers(delta)
