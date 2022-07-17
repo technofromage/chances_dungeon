@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/410486__elwi-96__rocks-compilation.wav-7c3ef0d41626bf826b032d4c63d0b818.sample"
+
+[deps]
+
+source_file="res://Audio/410486__elwi-96__rocks-compilation.wav"
+dest_files=[ "res://.import/410486__elwi-96__rocks-compilation.wav-7c3ef0d41626bf826b032d4c63d0b818.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

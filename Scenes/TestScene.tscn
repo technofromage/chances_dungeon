@@ -504,13 +504,13 @@ position = Vector2( -111.148, -86.7817 )
 
 [node name="DroppedWeapon" parent="." instance=ExtResource( 8 )]
 position = Vector2( 23.8469, 279.316 )
-rotation = 2.25147
+rotation = 2.14675
 texture = ExtResource( 10 )
 weapon = SubResource( 26 )
 
 [node name="DroppedWeapon2" parent="." instance=ExtResource( 8 )]
 position = Vector2( -53.6343, 282.644 )
-rotation = 0.383972
+rotation = 3.15905
 weapon = SubResource( 27 )
 
 [node name="LootContainer" type="Node" parent="."]

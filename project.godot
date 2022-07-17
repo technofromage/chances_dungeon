@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/CustomOptions.gd"
 }, {
+"base": "AudioStreamPlayer",
+"class": "CustomStreamPlayer",
+"language": "GDScript",
+"path": "res://Objects/Scripts/customStreamPlayer.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Mob",
 "language": "GDScript",
@@ -36,6 +41,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CustomOptions": "",
+"CustomStreamPlayer": "",
 "Mob": "",
 "SpinningLabel": "",
 "Stats": "",
@@ -54,6 +60,7 @@ Glob="*res://Globals/Globals.gd"
 OptionsMan="*res://Globals/OptionsManager.gd"
 RNGMan="*res://Globals/RNGManager.gd"
 RoomsData="*res://Globals/DungeonData.gd"
+Music="*res://Globals/MusicManager.gd"
 
 [input]
 

@@ -41,5 +41,75 @@ margin_top = 24.0
 margin_right = 114.0
 margin_bottom = 44.0
 text = "Load Test Room"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 114.0
+margin_bottom = 68.0
+text = "Credits"
+
+[node name="Credits" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -204.0
+margin_top = -128.0
+margin_right = 205.0
+margin_bottom = 220.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer"]
+margin_right = 399.0
+margin_bottom = 14.0
+text = "Credits"
+align = 1
+
+[node name="Label2" type="Label" parent="Credits/VBoxContainer"]
+margin_top = 18.0
+margin_right = 399.0
+margin_bottom = 270.0
+text = "Art
+JohnPablok - improved Cburnett chess set.
+Slainte - Assorted 20x20 weapons
+Buch - Top down dungeon tileset
+
+Music
+HoliznaCC0 - Rising Hero
+Defrini - Spookie
+Rolemusic - Alamak
+
+SFX
+ELWI_96 - Rocks Compilation	
+InspectorJ - Bamboo Swing, A10
+ethanchase7744 - Epic Sword Clang 2
+Dizzy Crow - 8-bit sound FX"
+
+[node name="ReturnCredits" type="Button" parent="Credits"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -27.0
+margin_top = -30.0
+margin_right = 27.0
+margin_bottom = -10.0
+text = "Return"
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_StartGame_pressed"]
 [connection signal="pressed" from="VBoxContainer/TestRoom" to="." method="_on_TestRoom_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Credits/ReturnCredits" to="." method="_on_ReturnCredits_pressed"]
