@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Objects/Scripts/SpinningLabel.gd"
 }, {
 "base": "Resource",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://Resources/Scripts/MobStats.gd"
+}, {
+"base": "Resource",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Weapon.gd"
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "CustomOptions": "",
 "Mob": "",
 "SpinningLabel": "",
+"Stats": "",
 "Weapon": ""
 }
 
@@ -92,4 +98,5 @@ game_attack={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

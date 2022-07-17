@@ -6,7 +6,7 @@ func randomise():
 	if isArrow==0:
 		$arrow.visible=false
 	else:
-		$arrow.visible=false
+		$arrow.visible=true
 		$arrow.rotation=RNGMan.LevelRNG.randi()%360
 	
 

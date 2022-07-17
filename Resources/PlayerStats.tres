@@ -1,3 +1,12 @@
-[gd_resource type="Resource" format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Weapons/BaseWeapon.tres" type="Resource" id=1]
+[ext_resource path="res://Resources/Scripts/MobStats.gd" type="Script" id=2]
 
 [resource]
+script = ExtResource( 2 )
+poise = 40
+coins = 1
+equipedWep = ExtResource( 1 )
+speed = 150
+maxHealth = 10

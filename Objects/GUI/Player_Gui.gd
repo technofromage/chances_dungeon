@@ -7,8 +7,8 @@ func _ready():
 	player = get_parent()
 
 func _process(delta):
-	$HealthLbl.text = "Health:%d/%d"%[player.health,player.maxHealth]
-	$HealthBar.value = player.health
+	$HealthLbl.text = "Health:%d/%d"%[player.StatBlock.health,player.StatBlock.maxHealth]
+	$HealthBar.value = player.StatBlock.health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

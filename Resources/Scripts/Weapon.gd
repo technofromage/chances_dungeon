@@ -27,7 +27,6 @@ func attack(source:Node2D, direction:Vector2)->bool:
 	cooldownTimer = cooldown
 	#This function is a generic call, and can be overwritten
 	#This version just does a basic jab
-	var startpos = source.position
 #	print("attacking!")
 	var rayCast:RayCast2D = source.get_node("WeaponHitScan")
 	rayCast.cast_to=direction*rangeLimit
@@ -35,7 +34,7 @@ func attack(source:Node2D, direction:Vector2)->bool:
 	var objectHit = rayCast.get_collider()
 	if objectHit:
 		print("hit!")
-		objectHit.health-=1
+		objectHit.StatBlock.health -= 1
 		objectHit.set_knockback(direction,500)
 	if cooldownTimer <= 0:
 		isAttacking=true

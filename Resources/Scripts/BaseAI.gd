@@ -28,8 +28,8 @@ func process(source:Node2D):
 			Glob.mobType.PLAYER:
 				targetVelocity += directionToObject*(distanceToObject-60)#move towards enimy, but stay safe distance
 				if distanceToObject<60:
-					if source.equipedWep:
-						source.equipedWep.attack(source, directionToObject)
+					if source.StatBlock.equipedWep:
+						source.StatBlock.equipedWep.attack(source, directionToObject)
 	source.velocity = (targetVelocity.normalized()*0.2)+(prevDirection*0.8)
 	prevDirection = source.velocity
 	

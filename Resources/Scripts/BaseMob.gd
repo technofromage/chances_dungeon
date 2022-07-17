@@ -6,37 +6,33 @@ enum mobType {
 	MONSTER
 	BEAST
 }
+export var StatBlock:Resource
 export (mobType) var type:int
-export var equipedWep:Resource
-export var speed = 150
-export var maxHealth = 10
-var health = maxHealth
 var velocity = Vector2(0,0)
 var knockbackVal = 0.0
 var knockbackDirection = Vector2(0,0)
-export var poise = 40 #how quickly knockback is reduced
-export var coins = 1 #how many coins do you drop on death
 
 
 func _ready():
-	if equipedWep:
-		$WeaponSprite.texture=equipedWep.sprite
+	if StatBlock.equipedWep:
+		StatBlock.equipedWep = StatBlock.equipedWep.duplicate()
+		$WeaponSprite.texture=StatBlock.equipedWep.sprite
 
 func _physics_process(delta):
-	if health == 0:
+	if StatBlock.health == 0:
 		process_death()
 	
-	if equipedWep:
-		equipedWep.processTimers(delta)
+	if StatBlock.equipedWep:
+		StatBlock.equipedWep.processTimers(delta)
 	
 	if knockbackVal>10:#loose controll
 		move_and_slide(knockbackDirection*knockbackVal)
-		knockbackVal-=poise
+		knockbackVal-=StatBlock.poise
 	elif knockbackVal>0:#parial controll
-		move_and_slide(velocity*speed+knockbackDirection*knockbackVal)
-		knockbackVal-=poise
+		move_and_slide(velocity*StatBlock.speed+knockbackDirection*knockbackVal)
+		knockbackVal-=StatBlock.poise
 	else:#full controll
-		move_and_slide(velocity*speed)
+		move_and_slide(velocity*StatBlock.speed)
 
 func set_knockback(direction:Vector2, value:int):
 	knockbackVal = value

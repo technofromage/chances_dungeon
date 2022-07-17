@@ -18,7 +18,14 @@ func _unhandled_input(event):
 		attackDir = position.direction_to(attackDir)
 #		print("Player>",attackDir)
 #		print("Player>",attackDir-position)
-		equipedWep.attack(self, attackDir)
+		StatBlock.equipedWep.attack(self, attackDir)
+
+func _process(_delta):
+	update()
 
 func process_death():
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
+func _draw():
+	draw_line(Vector2(-10,40),Vector2(-10+StatBlock.equipedWep.cooldownTimer*2,40),Color.red,4)
+	

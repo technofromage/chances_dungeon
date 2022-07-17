@@ -14,6 +14,8 @@ enum mobType {
 
 var debugFont = Control.new().get_font("font")#font used for debug 
 var objects = preload("res://Globals/SpawnableObjects.tscn").instance()
+var playerStats = load("res://Resources/PlayerStats.tres")
+
 
 func summonObject(name, parent):#create a clone of an object from the other Scene
 	var clone = objects.get_node(name).duplicate()

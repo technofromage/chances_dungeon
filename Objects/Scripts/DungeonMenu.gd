@@ -4,8 +4,6 @@ export var DMPath: NodePath
 var DM
 var spinningText = []
 
-const roomTypes = ["Room Basic", "Room Square"]
-
 const mainTextFormat = "Stage:%s \nCount:%s \nLvl:%s"
 
 func _ready():
@@ -15,6 +13,8 @@ func _process(_delta):
 	update()
 	var debugString = mainTextFormat % [String(DM.processStage),String(DM.counter),String(DM.difficulty)]
 	$MainText.text = debugString
+	$healthBar.max_value = Glob.playerStats.maxHealth
+	$healthBar.value = Glob.playerStats.health
 
 func clear_Text():
 	spinningText = []
@@ -23,10 +23,9 @@ func clear_Text():
 
 func create_Text():
 	var newLabel:SpinningLabel = Glob.summonObject("SpinningLabel", $RoomsText)
-	newLabel.textOptions = roomTypes
-	newLabel.timer = randi()%70+50
-	newLabel.isLevel = true
-	RNGMan.spinText(newLabel)
+	newLabel.textOptions = RoomsData.roomNames
+	newLabel.counter = RNGMan.LevelRNG.randi()%70+50
+	newLabel.useLevel = true
 	return newLabel
 
 func _draw():

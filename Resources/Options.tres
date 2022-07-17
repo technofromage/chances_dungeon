@@ -2,8 +2,5 @@
 
 [ext_resource path="res://Resources/Scripts/CustomOptions.gd" type="Script" id=1]
 
-
-
-
 [resource]
 script = ExtResource( 1 )

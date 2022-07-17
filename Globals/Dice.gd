@@ -3,10 +3,10 @@ extends Sprite
 var counter = 100
 var useLevel = false
 var value = -1
+var tempValue:int
 
 func _process(_delta):
-	var tempValue
-	if counter>=0:
+	if counter>0:
 		if useLevel:
 			tempValue = RNGMan.LevelRNG.randi()%6
 		else:

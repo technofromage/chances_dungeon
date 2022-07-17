@@ -1,12 +1,16 @@
 extends Node
 
 const roomNames = [\
-	"Room Basic",
-	"Room Square"
+	"Basic Room",
+	"Altarnative Room",
+	"Tiny Room",
+	"Walls Room"
 ]
 
 var roomAssets = {\
-	"Room Basic":preload("res://Objects/Rooms/Room_Basic.tscn"),
-	"Room Square":preload("res://Objects/Rooms/Room_Small.tscn")
+	"Basic Room":preload("res://Objects/Rooms/Room_Basic.tscn"),
+	"Altarnative Room":preload("res://Objects/Rooms/Room_Spire.tscn"),
+	"Tiny Room":preload("res://Objects/Rooms/Room_Void.tscn"),
+	"Walls Room":preload("res://Objects/Rooms/Room_Walled.tscn")
 }
 

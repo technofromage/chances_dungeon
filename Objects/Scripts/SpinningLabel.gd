@@ -4,13 +4,22 @@ class_name SpinningLabel
 
 export (Array, String) var textOptions;
 export (int) var currentOption
-var timer = 0
-var isLevel = false
+var counter = 0
+var useLevel = false
+var value = -1
 
-func change():
-	var index
-	if isLevel:
-		index = RNGMan.LevelRNG.randi()%len(textOptions)
-	else:
-		index = RNGMan.ActingRNG.randi()%len(textOptions)
-	text = textOptions[index]
+var tempValue
+func _process(_delta):
+	if counter>0:
+		if useLevel:
+			tempValue = RNGMan.LevelRNG.randi()%len(textOptions)
+		else:
+			tempValue = RNGMan.ActingRNG.randi()%len(textOptions)
+		text = textOptions[tempValue]
+		counter -= 1
+	if counter == 0:
+		value = textOptions[tempValue]
+		text = value
+		print("spinner:",value)
+		print("spinnertText:",text)
+

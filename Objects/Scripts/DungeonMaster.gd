@@ -8,7 +8,6 @@ var roomCount = 1
 var counter = 0#decremented to represent wait times to let info sink in
 #TODO: consider "fast mode" option
 var processStage = 0#increment this tool when the stage is done
-var spinnersList = []#any active spinners
 
 enum stages{
 	PATH,
@@ -45,9 +44,11 @@ func reset_dungeon():
 	path = []
 	processStage = 0
 	difficulty+=1
-	spinnersList.clear()
+	diceDictionary.clear()
+	readyToGo=false
 	$DungeonText.clear_Text()
 	$DungeonText.visible=true
+	$StartButton.visible=false
 	get_node("../ZoomedoutCam").current=true
 	for child in get_node("../RoomContainer").get_children():
 		child.queue_free()
@@ -55,6 +56,7 @@ func reset_dungeon():
 		child.queue_free()
 	for child in get_node("../LootContainer").get_children():
 		child.queue_free()
+	Glob.playerStats.health += 1
 
 func make_path():
 	var length = (RNGMan.LevelRNG.randi()%4+difficulty)
@@ -105,8 +107,8 @@ func place_rooms():
 		counter = 1
 	else:#there WILL be at least 1 path, so at least one room
 		for spinner in diceDictionary.keys():
-			if spinner.timer==0:
-				print(spinner.text)
+			if spinner.counter==0:
+				print("roomType:",spinner.text)
 				summon_room(spinner.text, diceDictionary[spinner])
 				diceDictionary.erase(spinner)#done so that the call won't trigger twice
 		if diceDictionary.empty():#ie: once all spinners have stoped
@@ -153,6 +155,7 @@ func start_game():
 	get_node("../ZoomedoutCam").current=false
 	$DungeonText.visible=false
 	processStage+=1
+	RNGMan.clear_dice()
 	
 
 
