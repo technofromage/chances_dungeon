@@ -8,6 +8,7 @@ const mainTextFormat = "Stage:%s \nCount:%s \nLvl:%s"
 
 func _ready():
 	DM = get_node(DMPath)
+	Glob.playerStats.start()
 
 func _process(_delta):
 	update()

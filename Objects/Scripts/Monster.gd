@@ -4,8 +4,10 @@ export var AI: Resource
 
 
 func _ready():
+	print("monsterHeatlth:", StatBlock.maxHealth)
 	StatBlock = StatBlock.duplicate()
 	AI = AI.duplicate()#make the AI unique
+	._ready()
 
 func _process(_delta):
 	if AI:

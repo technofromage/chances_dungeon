@@ -2,21 +2,33 @@ extends Resource
 class_name Stats
 
 export var poise = 40 #how quickly knockback is reduced
-var OGPoise = poise
+var OGPoise
 export var coins = 1 #how many coins do you drop on death
-var OGcoins = coins
+var OGcoins
 export var equipedWep:Resource
-var OGequipedWep = equipedWep
+var OGequipedWep
 export var speed = 150
-var OGspeed = speed
+var OGspeed
 export var maxHealth = 10
-var OGmaxHealth = maxHealth
-var health = maxHealth setget set_health
+var OGmaxHealth
+var health setget set_health
+var parent:Node2D
+
+
+func start():
+	OGPoise = poise
+	OGcoins = coins
+	OGequipedWep = equipedWep
+	OGspeed = speed
+	OGmaxHealth = maxHealth
+	health = maxHealth
+
 
 func set_health(value:int):
 	health = value
 	if health>maxHealth:
 		health = maxHealth
+
 
 func reset():
 	maxHealth=OGmaxHealth

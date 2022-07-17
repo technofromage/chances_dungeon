@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://Resources/Weapons/BaseWeapon.tres" type="Resource" id=1]
+[ext_resource path="res://Resources/Weapons/RollnStab.tres" type="Resource" id=1]
 [ext_resource path="res://Resources/Scripts/MobStats.gd" type="Script" id=2]
 
 [resource]

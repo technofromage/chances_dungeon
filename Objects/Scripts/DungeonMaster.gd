@@ -39,6 +39,10 @@ func _process(_delta):
 		stages.RESET:
 			reset_dungeon()
 
+func show_menu():
+	$DungeonText.visible=true
+	$StartButton.visible=false
+
 func reset_dungeon():
 	counter = 0
 	path = []
@@ -46,9 +50,8 @@ func reset_dungeon():
 	difficulty+=1
 	diceDictionary.clear()
 	readyToGo=false
+	show_menu()
 	$DungeonText.clear_Text()
-	$DungeonText.visible=true
-	$StartButton.visible=false
 	get_node("../ZoomedoutCam").current=true
 	for child in get_node("../RoomContainer").get_children():
 		child.queue_free()
@@ -132,10 +135,23 @@ func place_monsters():
 		processStage+=1
 
 func place_loot():
-	var stairs = Glob.summonObject("StairCase_Down",get_node("../LootContainer"))
-	stairs.position = destination*5*64
-	stairs.randomise()
-	processStage+=1
+	if counter==0:
+		diceDictionary.clear()
+		
+		var stairs = Glob.summonObject("StairCase_Down",get_node("../LootContainer"))
+		stairs.position = destination*5*64
+		stairs.randomise()
+		
+		var newDice = RNGMan.add_Dice(Vector2(100,100), Color.white,true,3)
+		diceDictionary[0] = newDice
+		
+		counter = 1
+	if diceDictionary[0].value!=-1:
+			var newThing = Glob.summonObject("DroppedWeapon",get_node("../LootContainer"))
+			newThing.position = path[diceDictionary[0].value%len(path)]*5*64 + Vector2(RNGMan.LevelRNG.randi()%31-15,RNGMan.LevelRNG.randi()%31-15)
+			newThing.weapon = RoomsData.weapons[RNGMan.LevelRNG.randi()%len(RoomsData.weapons)]
+			processStage+=1
+			counter = 0
 
 var readyToGo = false
 func wait_for_player():
@@ -167,8 +183,13 @@ func summon_room(name, pathPoint):#this function will put a room with the name "
 	clone.clip(neighborsArray)
 
 func summon_monster(value, pathPoint):
-	#TODO: implement different monsters
-	var clone = Glob.summonObject("Monster",get_node("../MobContainer"))
+	var clone
+	if value==1:
+		return
+	elif value==6:
+		clone = Glob.summonObject("MonsterBig",get_node("../MobContainer"))
+	else:
+		clone = Glob.summonObject("MonsterSmall",get_node("../MobContainer"))
 	clone.position = (pathPoint*5*64)+Vector2(RNGMan.LevelRNG.randi()%31-15,RNGMan.LevelRNG.randi()%31-15)
 
 func get_neighbors_on_path(pathPoint):

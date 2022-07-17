@@ -1,7 +1,12 @@
 extends Mob
 
+var objectOfIntrest:Node2D = null
+var dead = false
+
 
 func _unhandled_input(event):
+	if dead:
+		return
 	var input = Vector2(0,0)
 	if Input.is_action_pressed("game_up"):
 		input+=Vector2(0,-1)
@@ -19,13 +24,42 @@ func _unhandled_input(event):
 #		print("Player>",attackDir)
 #		print("Player>",attackDir-position)
 		StatBlock.equipedWep.attack(self, attackDir)
+	if Input.is_action_just_pressed("game_pickup"):
+		if objectOfIntrest!=null:
+			if (StatBlock.equipedWep):
+				var newObject = Glob.summonObject("DroppedWeapon",get_node("/root/Node2D/LootContainer"))
+				print("dropping:",StatBlock.equipedWep)
+				newObject.weapon = StatBlock.equipedWep
+				newObject.position = position
+			StatBlock.equipedWep = objectOfIntrest.weapon
+			objectOfIntrest.queue_free()
+			$WeaponSprite.texture=StatBlock.equipedWep.sprite
 
 func _process(_delta):
+	var OverlapList = $PickupArea.get_overlapping_areas()
+	if not OverlapList.empty():
+		objectOfIntrest = OverlapList[0].get_parent()
+	else:
+		objectOfIntrest = null
 	update()
 
 func process_death():
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	var camera = get_node("/res/Node2D/ZoomedoutCam")
+	var DM = get_node("/res/Node2D/DungeonMasterGUI")
+	dead = true
+	if camera:
+		$Camera2D.active=false
+		camera.active=true
+		DM.show_menu()
+		$Player_GUI/GameOverScreen.visible=true
+		$Sprite.modulate = Color.gray
+	else:
+		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func _draw():
-	draw_line(Vector2(-10,40),Vector2(-10+StatBlock.equipedWep.cooldownTimer*2,40),Color.red,4)
+	draw_line(Vector2(-10,40),Vector2(-10+StatBlock.equipedWep.cooldownTimer*8,40),Color.green,5)
+	if objectOfIntrest != null:
+		print("OOI:",objectOfIntrest.position)
+		draw_circle(objectOfIntrest.position-position+Vector2(16,16),10,Color.green)
+		draw_string(Glob.debugFont, objectOfIntrest.position-position+Vector2(12,20), 'E')
 	

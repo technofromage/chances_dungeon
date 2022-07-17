@@ -1,22 +1,31 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Objects/Scripts/Monster.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/JohnPabloc_Chess/w_pawn_png_128px.png" type="Texture" id=2]
-[ext_resource path="res://Resources/MobStats.tres" type="Resource" id=3]
+[ext_resource path="res://Sprites/JohnPabloc_Chess/w_rook_png_128px.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Scripts/MobStats.gd" type="Script" id=3]
 [ext_resource path="res://Resources/AI/BaseAI.tres" type="Resource" id=4]
+[ext_resource path="res://Resources/Weapons/RollnStabHeavy.tres" type="Resource" id=5]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+poise = 80
+coins = 2
+equipedWep = ExtResource( 5 )
+speed = 80
+maxHealth = 12
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.762
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 150.0
+radius = 200.0
 
 [node name="Monster" type="KinematicBody2D"]
 z_index = 1
 collision_layer = 4
 collision_mask = 9
 script = ExtResource( 1 )
-StatBlock = ExtResource( 3 )
+StatBlock = SubResource( 3 )
 type = 1
 AI = ExtResource( 4 )
 

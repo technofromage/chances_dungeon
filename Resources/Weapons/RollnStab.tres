@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Scripts/WeaponRollnStab.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Sliante_weapons/Slainte_weapons12.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+affectType = "slash"
+affectColor = Color( 0, 0, 1, 1 )
+sprite = ExtResource( 2 )
+rangeLimit = 120
+cooldown = 2
+attackSpeed = 10
+knockBackAmount = 20
+diceCount = 2
+delay = 5

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Objects/GUI/Player_Gui.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Health_Gray.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Health_Red.png" type="Texture" id=3]
 
 [node name="Player_GUI" type="CanvasLayer"]
 follow_viewport_enable = true
@@ -16,33 +18,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="TextureRect" parent="."]
 margin_left = 10.0
 margin_top = 50.0
-margin_right = 277.0
-margin_bottom = 108.0
-max_value = 10.0
-step = 1.0
-percent_visible = false
+margin_right = 148.0
+margin_bottom = 16.0
+texture = ExtResource( 2 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inventory" type="Control" parent="."]
-margin_left = 1.54004
-margin_top = -0.513336
-margin_right = 41.54
-margin_bottom = 39.4867
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Value" type="TextureRect" parent="HealthBar"]
+margin_right = 101.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+stretch_mode = 2
 
-[node name="Weapons" type="ItemList" parent="Inventory"]
-anchor_left = 0.898
-anchor_right = 1.0
+[node name="GameOverScreen" type="VBoxContainer" parent="."]
+visible = false
 anchor_bottom = 1.0
-margin_left = 849.08
-margin_right = 883.632
+margin_right = 117.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ConstLabel" type="Label" parent="GameOverScreen"]
+margin_top = 281.0
+margin_right = 117.0
+margin_bottom = 295.0
+text = "You've Died!"
+align = 1
+
+[node name="Button" type="Button" parent="GameOverScreen"]
+margin_top = 299.0
+margin_right = 117.0
+margin_bottom = 319.0
+text = "Return to Menu"
+[connection signal="pressed" from="GameOverScreen/Button" to="." method="_on_Button_pressed"]

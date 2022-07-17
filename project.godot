@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Weapon.gd"
+"path": "res://Resources/Scripts/WeaponBase.gd"
 } ]
 _global_script_class_icons={
 "CustomOptions": "",
@@ -53,7 +53,7 @@ config/icon="res://Sprites/icon.png"
 Glob="*res://Globals/Globals.gd"
 OptionsMan="*res://Globals/OptionsManager.gd"
 RNGMan="*res://Globals/RNGManager.gd"
-RoomsData="*res://Globals/DungeonManager.gd"
+RoomsData="*res://Globals/DungeonData.gd"
 
 [input]
 
@@ -87,6 +87,11 @@ game_attack={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
+game_pickup={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -95,6 +100,7 @@ game_attack={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="PlayerWeapon"
 2d_physics/layer_5="EnemyWeapon"
+2d_physics/layer_6="Item"
 
 [rendering]
 
