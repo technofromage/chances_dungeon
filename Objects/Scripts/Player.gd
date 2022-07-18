@@ -3,7 +3,6 @@ extends Mob
 var objectOfIntrest:Node2D = null
 var dead = false
 
-
 func _unhandled_input(event):
 	if dead:
 		return
@@ -34,6 +33,7 @@ func _unhandled_input(event):
 			StatBlock.equipedWep = objectOfIntrest.weapon
 			objectOfIntrest.queue_free()
 			$WeaponSprite.texture=StatBlock.equipedWep.sprite
+			$PickupSound.play()
 
 func _process(_delta):
 	var OverlapList = $PickupArea.get_overlapping_areas()
@@ -44,17 +44,25 @@ func _process(_delta):
 	update()
 
 func process_death():
-	var camera = get_node("/res/Node2D/ZoomedoutCam")
-	var DM = get_node("/res/Node2D/DungeonMasterGUI")
+	if dead:
+		return
+	velocity = Vector2(0,0)
+	knockbackVal = 0
+	$CollisionShape2D.disabled=true
+	Music.request_death()
+	var camera = get_node("/root/Node2D/ZoomedoutCam")
+	var DM = get_node("/root/Node2D/DungeonMasterGUI")
 	dead = true
 	if camera:
-		$Camera2D.active=false
-		camera.active=true
+		$Camera2D.current=false
+		camera.current=true
 		DM.show_menu()
 		$Player_GUI/GameOverScreen.visible=true
 		$Sprite.modulate = Color.gray
 	else:
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
+		Music.inGame = false
+		Music.fadeout = true
 
 func _draw():
 	draw_line(Vector2(-10,40),Vector2(-10+StatBlock.equipedWep.cooldownTimer*8,40),Color.green,5)

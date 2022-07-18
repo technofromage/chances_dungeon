@@ -4,3 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+MusicVol = -8.0
+MusicMute = false
+SFXVol = 0.0
+SFXMute = false

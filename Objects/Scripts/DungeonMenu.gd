@@ -8,7 +8,6 @@ const mainTextFormat = "Stage:%s \nCount:%s \nLvl:%s"
 
 func _ready():
 	DM = get_node(DMPath)
-	Glob.playerStats.start()
 
 func _process(_delta):
 	update()
@@ -31,4 +30,4 @@ func create_Text():
 
 func _draw():
 	for point in DM.path:
-		draw_circle(point*8+Vector2(75,50),4,Color.blue)
+		draw_circle(point*8+Vector2(75,150),4,Color.blue)

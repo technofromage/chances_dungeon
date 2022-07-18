@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Rolemusic - Alamak.ogg-c5e832b9f11131d2853c22e0ea7dcce4.oggstr"
+
+[deps]
+
+source_file="res://Audio/Rolemusic - Alamak.ogg"
+dest_files=[ "res://.import/Rolemusic - Alamak.ogg-c5e832b9f11131d2853c22e0ea7dcce4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

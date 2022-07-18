@@ -6,18 +6,18 @@
 [ext_resource path="res://Resources/AI/BaseAI.tres" type="Resource" id=4]
 [ext_resource path="res://Resources/Weapons/RollnStabHeavy.tres" type="Resource" id=5]
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
 poise = 80
 coins = 2
 equipedWep = ExtResource( 5 )
-speed = 80
+speed = 70
 maxHealth = 12
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 22.762
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 200.0
 
 [node name="Monster" type="KinematicBody2D"]
@@ -25,7 +25,7 @@ z_index = 1
 collision_layer = 4
 collision_mask = 9
 script = ExtResource( 1 )
-StatBlock = SubResource( 3 )
+StatBlock = SubResource( 1 )
 type = 1
 AI = ExtResource( 4 )
 
@@ -38,7 +38,7 @@ texture = ExtResource( 2 )
 offset = Vector2( -10, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="WeaponHitScan" type="RayCast2D" parent="."]
 collision_mask = 2
@@ -49,4 +49,4 @@ collision_layer = 0
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIHitbox"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )

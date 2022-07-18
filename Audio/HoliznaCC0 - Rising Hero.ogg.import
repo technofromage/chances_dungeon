@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/HoliznaCC0 - Rising Hero.ogg-8b7a0b213aeb64eed0c88a1eb7417df8.oggstr"
+
+[deps]
+
+source_file="res://Audio/HoliznaCC0 - Rising Hero.ogg"
+dest_files=[ "res://.import/HoliznaCC0 - Rising Hero.ogg-8b7a0b213aeb64eed0c88a1eb7417df8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

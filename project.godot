@@ -112,4 +112,5 @@ game_pickup={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.172549, 0.313726, 0.14902, 1 )
 environment/default_environment="res://default_env.tres"

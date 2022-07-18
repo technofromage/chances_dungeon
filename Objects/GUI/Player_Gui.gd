@@ -20,3 +20,5 @@ func _process(delta):
 func _on_Button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	Music.inGame = false
+	Music.fadeout = true

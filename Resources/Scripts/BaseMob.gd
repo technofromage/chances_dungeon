@@ -14,7 +14,6 @@ var knockbackDirection = Vector2(0,0)
 
 
 func _ready():
-	StatBlock.start()#note: the players stats get started twice, this will cause no issue
 	if StatBlock.equipedWep:
 		StatBlock.equipedWep = StatBlock.equipedWep.duplicate()
 		$WeaponSprite.texture=StatBlock.equipedWep.sprite

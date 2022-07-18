@@ -3,6 +3,8 @@ class_name CustomStreamPlayer
 
 export (Array, int) var beat_targets : Array
 export var beat_offset_ms : int
+export (Array, AudioStream) var soundList
 
-func queuePlay():
-	Music.queue_sound(self)
+func playfromList():
+	stream = soundList[RNGMan.ActingRNG.randi()%len(soundList)]
+	play()

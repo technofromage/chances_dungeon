@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/HoliznaCC0 - NPC Theme0.ogg-4c0b555fd21c3b31397e8a06efba51b8.oggstr"
+
+[deps]
+
+source_file="res://Audio/HoliznaCC0 - NPC Theme0.ogg"
+dest_files=[ "res://.import/HoliznaCC0 - NPC Theme0.ogg-4c0b555fd21c3b31397e8a06efba51b8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

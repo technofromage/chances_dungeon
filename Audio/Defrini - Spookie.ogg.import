@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Defrini - Spookie.ogg-e19a7e05b100172ce9feacfb9d4edfac.oggstr"
+
+[deps]
+
+source_file="res://Audio/Defrini - Spookie.ogg"
+dest_files=[ "res://.import/Defrini - Spookie.ogg-e19a7e05b100172ce9feacfb9d4edfac.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

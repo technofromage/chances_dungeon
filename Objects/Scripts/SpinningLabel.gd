@@ -22,4 +22,6 @@ func _process(_delta):
 		text = value
 		print("spinner:",value)
 		print("spinnertText:",text)
+		counter -= 1
+	
 

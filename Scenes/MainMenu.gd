@@ -7,10 +7,9 @@ func _on_StartGame_pressed():
 	Glob.change_scene(target)
 
 
-func _on_TestRoom_pressed():
-	var target = "res://Scenes/TestScene.tscn"
-	Glob.playerStats.reset()
-	Glob.change_scene(target)
+func _on_Options_pressed():
+	$OptionsMenu.visible=true
+	$OptionsMenu.readOptions()
 
 func _on_ReturnCredits_pressed():
 	$Credits.visible = false

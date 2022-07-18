@@ -41,7 +41,7 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="DroppedWeapon" parent="." instance=ExtResource( 12 )]
-rotation = 2.21657
+rotation = 1.51844
 weapon = SubResource( 3 )
 
 [node name="Dice" type="Sprite" parent="."]

@@ -24,6 +24,9 @@ func _on_Quit_pressed():
 func _on_Main_pressed():
 	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	Music.inGame = false
+	Music.fadeout = true
 
 func _on_Options_pressed():
 	$OptionsMenu.visible = true
+	$OptionsMenu.readOptions()

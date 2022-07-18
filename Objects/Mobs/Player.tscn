@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/JohnPabloc_Chess/w_pawn_png_128px.png" type="Texture" id=2]
 [ext_resource path="res://Resources/PlayerStats.tres" type="Resource" id=3]
 [ext_resource path="res://Objects/GUI/Player_Gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/Touch.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.762
@@ -45,3 +46,9 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource( 2 )
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 6 )
+volume_db = 10.0
+bus = "SFX"

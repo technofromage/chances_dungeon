@@ -1,56 +1,57 @@
-extends Node
+extends AudioStreamPlayer
 
-var musicPlayer : AudioStreamPlayer
-const BPM = 140
-const SPB = 0.4286
-const mesLen = 4 #beats per measure
+var silenceTimer = 4
+var inGame = false
+var fadeout = false
 
-var musicClock = 0
-var musicMode = 1
-var _currentTrackMode = 1
-var _lastTimeChecked = 0
-var _currentBeat = 0
-var _musicTimer = 0
-#const _musicTrackLen = 16#beats
+var musicOptions = [
+	preload("res://Audio/HoliznaCC0 - Rising Hero.ogg"),
+	preload("res://Audio/Defrini - Spookie.ogg"),
+	preload("res://Audio/Rolemusic - Alamak.ogg")
+]
+var nextStream:AudioStream = preload("res://Audio/Rolemusic - Alamak.ogg")
+var deathMusic = preload("res://Audio/HoliznaCC0 - NPC Theme.ogg")
+var deathRequest = false
 
-#this will be a 2-D array containing streams to be played
-var _soundQueue : Array = [[],[],[],[]]
+func _ready():
+	bus = "Music"
+	stream = musicOptions[2]
+	pause_mode=Node.PAUSE_MODE_PROCESS
 
+func reset():
+	fadeout = true
+	deathRequest = false
+	inGame = false
 
-func _process(delta):
-	musicClock += delta
-	if (musicClock-_lastTimeChecked>SPB):
-		_currentBeat += 1
-		_currentBeat %= mesLen
-		_musicTimer += 1
-		_musicTimer %= _musicTrackLen
-		_lastTimeChecked=musicClock
-		
-		for sound in _soundQueue[_currentBeat]:
-			print("playing:", sound, _currentBeat)
-			sound.play()
-		_soundQueue[_currentBeat].clear()
-		
-		if (_musicTimer == 0):
-			musicPlayer.play()
+func _process(_delta):
+	if fadeout:
+		if volume_db > -40:
+			volume_db -= 1
+			return
+		else:
+			stop()
+			fadeout = false
+			volume_db = 0
+	if inGame:
+		if not playing:
+			if silenceTimer == 0:
+				stream = nextStream
+				nextStream = musicOptions[RNGMan.ActingRNG.randi()%len(musicOptions)]
+				play()
+				silenceTimer = RNGMan.ActingRNG.randi()%50+100
+			else:
+				silenceTimer -= 1
 	
+	if deathRequest:
+		stream = deathMusic
+		play()
+		deathRequest = false
+		inGame = false
 
-#places the sound into the queue
-func queue_sound(sound:CustomStreamPlayer):
-	var beatTargets = sound.beat_targets
-	if (len(beatTargets)==0):
-		#if none are given, assume all beats are valid
-		beatTargets = range(mesLen)
-	assert(len(beatTargets)>0)
-	var i = _currentBeat
-	while (not beatTargets.has(i)):
-		i+=1
-		i%=mesLen
-	_soundQueue[i].append(sound)
-
-#gets the time to next beat # (ie: beat #1 is first beat in measure)
-#if targetBeat == -1 then gets time for next beat
-func time_to_next_beat(targetBeat:int):
-	pass
-
-
+func request_death():
+	print("requesting death music")
+	inGame = false
+	if playing:
+		fadeout = true
+		deathRequest = true
+		

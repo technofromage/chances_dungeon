@@ -11,7 +11,7 @@ export var speed = 150
 var OGspeed
 export var maxHealth = 10
 var OGmaxHealth
-var health setget set_health
+var health = 1 setget set_health
 var parent:Node2D
 
 

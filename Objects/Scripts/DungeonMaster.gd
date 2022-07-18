@@ -21,7 +21,10 @@ enum stages{
 	}
 
 var diceDictionary = {}
-	
+
+func _ready():
+	Music.inGame = true
+
 func _process(_delta):
 	match(processStage):
 		stages.PATH:
@@ -110,7 +113,7 @@ func place_rooms():
 		counter = 1
 	else:#there WILL be at least 1 path, so at least one room
 		for spinner in diceDictionary.keys():
-			if spinner.counter==0:
+			if spinner.counter<=0:
 				print("roomType:",spinner.text)
 				summon_room(spinner.text, diceDictionary[spinner])
 				diceDictionary.erase(spinner)#done so that the call won't trigger twice
@@ -184,9 +187,9 @@ func summon_room(name, pathPoint):#this function will put a room with the name "
 
 func summon_monster(value, pathPoint):
 	var clone
-	if value==1:
+	if value==0:
 		return
-	elif value==6:
+	elif value==5:
 		clone = Glob.summonObject("MonsterBig",get_node("../MobContainer"))
 	else:
 		clone = Glob.summonObject("MonsterSmall",get_node("../MobContainer"))
