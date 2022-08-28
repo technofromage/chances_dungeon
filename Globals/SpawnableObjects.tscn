@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Objects/Scripts/SpinningLabel.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Mobs/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Objects/DroppedWeapon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Sprites/Sliante_weapons/Slainte_weapons6.png" type="Texture" id=13]
 [ext_resource path="res://Objects/Mobs/MonsterBig.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Audio/dice_roll1.wav" type="AudioStream" id=15]
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 11 )
@@ -41,7 +42,7 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="DroppedWeapon" parent="." instance=ExtResource( 12 )]
-rotation = 1.51844
+rotation = 5.07891
 weapon = SubResource( 3 )
 
 [node name="Dice" type="Sprite" parent="."]
@@ -50,6 +51,10 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 script = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Dice"]
+stream = ExtResource( 15 )
+bus = "SFX"
 
 [node name="MonsterSmall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0.735107, 0 )

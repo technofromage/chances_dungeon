@@ -1,17 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Resources/Weapons/Stab.tres" type="Resource" id=1]
+[ext_resource path="res://Resources/Scripts/WeaponStab.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Scripts/DroppedWeapon.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Sliante_weapons/Slainte_weapons6.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+affectType = "slash"
+affectColor = Color( 0.482353, 0.482353, 0.545098, 1 )
+sprite = ExtResource( 3 )
+rangeLimit = 100
+cooldown = 1
+attackSpeed = 10
+knockBackAmount = 20
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
 
 [node name="DroppedWeapon" type="Sprite"]
-rotation = 4.03171
+rotation = 0.471239
 texture = ExtResource( 3 )
 script = ExtResource( 2 )
-weapon = ExtResource( 1 )
+weapon = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
@@ -19,4 +29,4 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )

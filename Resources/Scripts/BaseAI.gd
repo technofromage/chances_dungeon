@@ -15,6 +15,8 @@ func process(source:Node2D):
 		wonderTimer = 40
 	wonderTimer-=1
 	var targetVelocity = wonderDirection
+	
+	#manage nearby entities
 	var collisions = scanBox.get_overlapping_bodies()
 	for thing in collisions:#if see player, wall, or other monster
 		if thing==source:

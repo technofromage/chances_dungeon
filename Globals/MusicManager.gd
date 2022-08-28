@@ -9,6 +9,11 @@ var musicOptions = [
 	preload("res://Audio/Defrini - Spookie.ogg"),
 	preload("res://Audio/Rolemusic - Alamak.ogg")
 ]
+var diceAffectOptions = [
+	preload("res://Audio/dice_roll1.wav"),
+	preload("res://Audio/dice_roll2.wav"),
+	preload("res://Audio/dice_roll3.wav")
+]
 var nextStream:AudioStream = preload("res://Audio/Rolemusic - Alamak.ogg")
 var deathMusic = preload("res://Audio/HoliznaCC0 - NPC Theme.ogg")
 var deathRequest = false
@@ -17,6 +22,8 @@ func _ready():
 	bus = "Music"
 	stream = musicOptions[2]
 	pause_mode=Node.PAUSE_MODE_PROCESS
+	volume_db = -21
+	
 
 func reset():
 	fadeout = true

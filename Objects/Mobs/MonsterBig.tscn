@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Objects/Scripts/Monster.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/JohnPabloc_Chess/w_rook_png_128px.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Scripts/MobStats.gd" type="Script" id=3]
 [ext_resource path="res://Resources/AI/BaseAI.tres" type="Resource" id=4]
 [ext_resource path="res://Resources/Weapons/RollnStabHeavy.tres" type="Resource" id=5]
+[ext_resource path="res://Audio/394414__inspectorj__bamboo-swing-a10.wav" type="AudioStream" id=6]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -36,6 +37,10 @@ texture = ExtResource( 2 )
 
 [node name="WeaponSprite" type="Sprite" parent="."]
 offset = Vector2( -10, 0 )
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

@@ -30,6 +30,7 @@ func attack(source:Node2D, direction:Vector2)->bool:
 func attemptHit():
 	var damage = calculateDamage()
 	var rayCast:RayCast2D = hitSource.get_node("WeaponHitScan")
+	hitSource.get_node("HitSound").play()
 	rayCast.cast_to=hitDir*rangeLimit
 	rayCast.force_raycast_update()
 	var objectHit = rayCast.get_collider()
@@ -50,5 +51,5 @@ func calculateDamage():
 	var sum = 0
 	for die in diceList:
 		print("SwordDie:", die.value)
-		sum += die.value
+		sum += (die.value+1)
 	return sum

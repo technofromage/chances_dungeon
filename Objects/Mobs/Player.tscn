@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Objects/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/JohnPabloc_Chess/w_pawn_png_128px.png" type="Texture" id=2]
 [ext_resource path="res://Resources/PlayerStats.tres" type="Resource" id=3]
 [ext_resource path="res://Objects/GUI/Player_Gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/394414__inspectorj__bamboo-swing-a10.wav" type="AudioStream" id=5]
 [ext_resource path="res://Audio/Touch.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -26,6 +27,9 @@ texture = ExtResource( 2 )
 
 [node name="WeaponSprite" type="Sprite" parent="."]
 position = Vector2( -10, 0 )
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

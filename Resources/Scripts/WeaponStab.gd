@@ -3,6 +3,7 @@ extends Weapon
 func attack(source:Node2D, direction:Vector2)->bool:
 	if cooldownTimer>0:
 		return false
+	source.get_node("HitSound").play()
 	cooldownTimer = cooldown
 	#This function is a generic call, and can be overwritten
 	#This version just does a basic jab
