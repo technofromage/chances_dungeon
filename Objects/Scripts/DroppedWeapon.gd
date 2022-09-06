@@ -1,6 +1,7 @@
 extends Sprite
 tool
 export var weapon:Resource setget loadWeapon
+const itemType = "weapon"
 
 func _ready():
 	weapon = weapon.duplicate()

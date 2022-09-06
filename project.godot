@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/BaseMob.gd"
 }, {
+"base": "Sprite",
+"class": "Relic",
+"language": "GDScript",
+"path": "res://Resources/Scripts/BaseRelic.gd"
+}, {
 "base": "Label",
 "class": "SpinningLabel",
 "language": "GDScript",
@@ -43,6 +48,7 @@ _global_script_class_icons={
 "CustomOptions": "",
 "CustomStreamPlayer": "",
 "Mob": "",
+"Relic": "",
 "SpinningLabel": "",
 "Stats": "",
 "Weapon": ""
@@ -107,7 +113,8 @@ game_pickup={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="PlayerWeapon"
 2d_physics/layer_5="EnemyWeapon"
-2d_physics/layer_6="Item"
+2d_physics/layer_6="PrompItem"
+2d_physics/layer_7="AutoPickupItem"
 
 [rendering]
 

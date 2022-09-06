@@ -11,12 +11,21 @@ enum mobType {
 	MONSTER
 	BEAST
 }
+enum statusType {
+	MAX_HEALTH
+	HEALTH
+	SPEED
+	COINS
+	POISE
+}
 
 var debugFont = Control.new().get_font("font")#font used for debug 
-var objects = preload("res://Globals/SpawnableObjects.tscn").instance()
-var playerStats = preload("res://Resources/PlayerStats.tres")
+var objects:Node #the spawnable objects to clone from
+var playerStats:Resource #the character stats page
 
 func _ready():
+	objects = load("res://Globals/SpawnableObjects.tscn").instance()
+	playerStats = load("res://Resources/PlayerStats.tres")
 	playerStats.start()
 
 func summonObject(name, parent):#create a clone of an object from the other Scene

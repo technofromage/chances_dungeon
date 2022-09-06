@@ -25,14 +25,19 @@ func _unhandled_input(event):
 		StatBlock.equipedWep.attack(self, attackDir)
 	if Input.is_action_just_pressed("game_pickup"):
 		if objectOfIntrest!=null:
-			if (StatBlock.equipedWep):
-				var newObject = Glob.summonObject("DroppedWeapon",get_node("/root/Node2D/LootContainer"))
-				print("dropping:",StatBlock.equipedWep)
-				newObject.weapon = StatBlock.equipedWep
-				newObject.position = position
-			StatBlock.equipedWep = objectOfIntrest.weapon
+			match objectOfIntrest.itemType:
+				"weapon":
+					if (StatBlock.equipedWep):
+						var newObject = Glob.summonObject("DroppedWeapon",get_node("/root/Node2D/LootContainer"))
+						print("dropping:",StatBlock.equipedWep)
+						newObject.weapon = StatBlock.equipedWep
+						newObject.position = position
+					$WeaponSprite.texture=StatBlock.equipedWep.sprite
+					StatBlock.equipedWep = objectOfIntrest.weapon
+				"relic":
+					objectOfIntrest.take()
+					$Player_GUI.updateUI()
 			objectOfIntrest.queue_free()
-			$WeaponSprite.texture=StatBlock.equipedWep.sprite
 			$PickupSound.play()
 
 func _process(_delta):

@@ -9,8 +9,10 @@ func _ready():
 
 func _process(delta):
 	$HealthLbl.text = "Health:%d/%d"%[player.StatBlock.health,player.StatBlock.maxHealth]
-	
 	$HealthBar/Value.rect_size=Vector2(32*player.StatBlock.health, 16)
+
+func updateUI():
+	$HealthBar.rect_size=Vector2(32*player.StatBlock.maxHealth, 16)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Objects/Scripts/SpinningLabel.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Mobs/Player.tscn" type="PackedScene" id=2]
@@ -15,8 +15,9 @@
 [ext_resource path="res://Sprites/Sliante_weapons/Slainte_weapons6.png" type="Texture" id=13]
 [ext_resource path="res://Objects/Mobs/MonsterBig.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Audio/dice_roll1.wav" type="AudioStream" id=15]
+[ext_resource path="res://Objects/relics/HealthRelic.tscn" type="PackedScene" id=16]
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="Resource" id=3]
 script = ExtResource( 11 )
 affectType = "slash"
 affectColor = Color( 0.482353, 0.482353, 0.545098, 1 )
@@ -31,6 +32,8 @@ extents = Vector2( 6.93122, 8.139 )
 
 [node name="SpawnableObjects" type="Node"]
 
+[node name="HealthUp" parent="." instance=ExtResource( 16 )]
+
 [node name="SpinningLabel" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 14.0
@@ -42,8 +45,8 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="DroppedWeapon" parent="." instance=ExtResource( 12 )]
-rotation = 4.71239
-weapon = SubResource( 1 )
+rotation = 1.48353
+weapon = SubResource( 3 )
 
 [node name="Dice" type="Sprite" parent="."]
 z_index = 5

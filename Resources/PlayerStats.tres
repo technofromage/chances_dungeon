@@ -9,4 +9,4 @@ poise = 40
 coins = 1
 equipedWep = ExtResource( 1 )
 speed = 150
-maxHealth = 10
+maxHealth = 5

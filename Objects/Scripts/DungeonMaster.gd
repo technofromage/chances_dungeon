@@ -145,16 +145,25 @@ func place_loot():
 		stairs.position = destination*5*64
 		stairs.randomise()
 		
-		var newDice = RNGMan.add_Dice(Vector2(100,100), Color.white,true,3)
-		diceDictionary[0] = newDice
+		var weaponDie = RNGMan.add_Dice(Vector2(100,100), Color.white,true,3)
+		diceDictionary[0] = weaponDie
+		var powerupDie = RNGMan.add_Dice(Vector2(0,80), Color.blue,true,3)
+		diceDictionary[1] = powerupDie
 		
-		counter = 1
+		counter = 2
 	if diceDictionary[0].value!=-1:
 			var newThing = Glob.summonObject("DroppedWeapon",get_node("../LootContainer"))
 			newThing.position = path[diceDictionary[0].value%len(path)]*5*64 + Vector2(RNGMan.LevelRNG.randi()%31-15,RNGMan.LevelRNG.randi()%31-15)
 			newThing.weapon = RoomsData.weapons[RNGMan.LevelRNG.randi()%len(RoomsData.weapons)]
-			processStage+=1
-			counter = 0
+			diceDictionary[0].value = -1
+			counter -=1
+	if diceDictionary[1].value!=-1:
+			var newThing = Glob.summonObject("HealthUp",get_node("../LootContainer"))
+			newThing.position = path[diceDictionary[1].value%len(path)]*5*64 + Vector2(RNGMan.LevelRNG.randi()%71-35,RNGMan.LevelRNG.randi()%71-35)
+			diceDictionary[1].value = -1
+			counter -=1
+	if counter == 0:
+		processStage+=1
 
 var readyToGo = false
 func wait_for_player():
