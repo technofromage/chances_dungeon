@@ -16,7 +16,7 @@
 [ext_resource path="res://Objects/Mobs/MonsterBig.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Audio/dice_roll1.wav" type="AudioStream" id=15]
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 11 )
 affectType = "slash"
 affectColor = Color( 0.482353, 0.482353, 0.545098, 1 )
@@ -42,8 +42,8 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="DroppedWeapon" parent="." instance=ExtResource( 12 )]
-rotation = 5.07891
-weapon = SubResource( 3 )
+rotation = 4.71239
+weapon = SubResource( 1 )
 
 [node name="Dice" type="Sprite" parent="."]
 z_index = 5

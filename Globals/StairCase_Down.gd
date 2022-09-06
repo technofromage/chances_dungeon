@@ -14,6 +14,7 @@ func randomise():
 func _on_Area2D_body_entered(body:KinematicBody2D):
 	if body:
 		if body.type == Glob.mobType.PLAYER:
-			get_node("/root/Node2D/VictorySFX").play()
-			Music.fadeout=true
+			var jingleNode = get_node("/root/Node2D/VictorySFX")
+			jingleNode.play()
+			Music.pauseForJingle(jingleNode)
 			get_node("/root/Node2D/DungeonMasterGUI").reset_dungeon()

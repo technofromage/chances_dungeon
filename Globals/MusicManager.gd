@@ -3,6 +3,8 @@ extends AudioStreamPlayer
 var silenceTimer = 4
 var inGame = false
 var fadeout = false
+var waitingPlayer = null #the audioPlayer we are waiting from
+var pausePos	# the point to resume the pause from
 
 var musicOptions = [
 	preload("res://Audio/HoliznaCC0 - Rising Hero.ogg"),
@@ -18,11 +20,13 @@ var nextStream:AudioStream = preload("res://Audio/Rolemusic - Alamak.ogg")
 var deathMusic = preload("res://Audio/HoliznaCC0 - NPC Theme.ogg")
 var deathRequest = false
 
+export var normVolume = -15 #db
+
 func _ready():
 	bus = "Music"
 	stream = musicOptions[2]
 	pause_mode=Node.PAUSE_MODE_PROCESS
-	volume_db = -21
+	volume_db = normVolume
 	
 
 func reset():
@@ -36,18 +40,27 @@ func _process(_delta):
 			volume_db -= 1
 			return
 		else:
+			#in case of resuming later, we can pause
+			pausePos = get_playback_position() 
 			stop()
 			fadeout = false
-			volume_db = 0
+			volume_db = normVolume
 	if inGame:
-		if not playing:
-			if silenceTimer == 0:
-				stream = nextStream
-				nextStream = musicOptions[RNGMan.ActingRNG.randi()%len(musicOptions)]
-				play()
-				silenceTimer = RNGMan.ActingRNG.randi()%50+100
-			else:
-				silenceTimer -= 1
+		if waitingPlayer!=null:	#we are paused and are waiting for someone
+			if waitingPlayer.playing==false:
+				waitingPlayer=null
+				play(pausePos)
+				return
+		else:
+			if not playing:
+				print("MM>", silenceTimer)
+				if silenceTimer == 0:
+					stream = nextStream
+					nextStream = musicOptions[RNGMan.ActingRNG.randi()%len(musicOptions)]
+					play()
+					silenceTimer = RNGMan.ActingRNG.randi()%50+100
+				else:
+					silenceTimer -= 1
 	
 	if deathRequest:
 		stream = deathMusic
@@ -61,4 +74,8 @@ func request_death():
 	if playing:
 		fadeout = true
 		deathRequest = true
-		
+
+func pauseForJingle(jinglePlayer):
+	waitingPlayer = jinglePlayer
+	fadeout = true
+	
